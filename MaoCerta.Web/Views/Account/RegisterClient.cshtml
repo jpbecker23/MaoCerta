@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Cadastro de cliente";
+}
+<section class="page auth-page" id="client-register-page">
+    <div class="card form-card">
+        <h1>Criar conta de cliente</h1>
+        <p class="muted">Use seu cadastro para solicitar servicos e receber codigos de confirmacao.</p>
+        <form id="client-register-form" novalidate>
+            <label>
+                Nome completo
+                <input type="text" name="fullName" autocomplete="name" required />
+            </label>
+            <label>
+                Email
+                <input type="email" name="email" autocomplete="email" required />
+            </label>
+            <label>
+                CPF
+                <input type="text" name="cpf" placeholder="000.000.000-00" inputmode="numeric" required />
+            </label>
+            <label>
+                Celular (opcional)
+                <input type="tel" name="phone" placeholder="(11) 99999-9999" />
+            </label>
+            <div class="grid grid-2">
+                <label>
+                    Senha
+                    <input type="password" name="password" required />
+                </label>
+                <label>
+                    Confirmar senha
+                    <input type="password" name="confirmPassword" required />
+                </label>
+            </div>
+            <p class="muted" id="client-password-hint">Use pelo menos 8 caracteres, letra maiuscula, minuscula, numero e simbolo.</p>
+            <div class="grid grid-2">
+                <label class="inline">
+                    <input type="checkbox" name="terms" required />
+                    Aceito os termos de uso.
+                </label>
+                <span class="muted" id="client-register-status"></span>
+            </div>
+            <button class="btn primary" type="submit">Criar conta de cliente</button>
+        </form>
+        <p class="muted">Ja possui conta? <a asp-action="Login">Entrar</a></p>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/register-client.js" asp-append-version="true"></script>
+}

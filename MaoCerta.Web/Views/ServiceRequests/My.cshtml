@@ -1,0 +1,72 @@
+@{
+    ViewData["Title"] = "Minhas solicitacoes";
+}
+<section class="page" id="my-requests-page">
+    <header class="section-header">
+        <div>
+            <h1>Minhas solicitacoes</h1>
+            <p class="muted">Acompanhe o status, cancele ou conclua e deixe sua avaliacao.</p>
+        </div>
+    </header>
+    <div class="grid" id="my-requests-list" data-empty-message="Voce ainda nao enviou solicitacoes."></div>
+
+    <template id="rating-template">
+        <div class="rating-modal">
+            <h3>Avaliacao por criterio</h3>
+            <div class="rating-groups">
+                <div class="rating-group" data-criteria="quality">
+                    <span>Qualidade</span>
+                    <div class="stars">
+                        <button type="button" data-value="1">&#9733;</button>
+                        <button type="button" data-value="2">&#9733;</button>
+                        <button type="button" data-value="3">&#9733;</button>
+                        <button type="button" data-value="4">&#9733;</button>
+                        <button type="button" data-value="5" class="active">&#9733;</button>
+                    </div>
+                </div>
+                <div class="rating-group" data-criteria="speed">
+                    <span>Pontualidade</span>
+                    <div class="stars">
+                        <button type="button" data-value="1">&#9733;</button>
+                        <button type="button" data-value="2">&#9733;</button>
+                        <button type="button" data-value="3">&#9733;</button>
+                        <button type="button" data-value="4">&#9733;</button>
+                        <button type="button" data-value="5" class="active">&#9733;</button>
+                    </div>
+                </div>
+                <div class="rating-group" data-criteria="communication">
+                    <span>Comunicacao</span>
+                    <div class="stars">
+                        <button type="button" data-value="1">&#9733;</button>
+                        <button type="button" data-value="2">&#9733;</button>
+                        <button type="button" data-value="3">&#9733;</button>
+                        <button type="button" data-value="4">&#9733;</button>
+                        <button type="button" data-value="5" class="active">&#9733;</button>
+                    </div>
+                </div>
+                <div class="rating-group" data-criteria="professionalism">
+                    <span>Profissionalismo</span>
+                    <div class="stars">
+                        <button type="button" data-value="1">&#9733;</button>
+                        <button type="button" data-value="2">&#9733;</button>
+                        <button type="button" data-value="3">&#9733;</button>
+                        <button type="button" data-value="4">&#9733;</button>
+                        <button type="button" data-value="5" class="active">&#9733;</button>
+                    </div>
+                </div>
+            </div>
+            <label>
+                Comentario
+                <textarea rows="3" data-role="comment"></textarea>
+            </label>
+            <div class="actions">
+                <button class="btn ghost" data-role="cancel">Fechar</button>
+                <button class="btn primary" data-role="submit">Enviar avaliacao</button>
+            </div>
+        </div>
+    </template>
+</section>
+
+@section Scripts {
+    <script src="~/js/my-requests.js" asp-append-version="true"></script>
+}

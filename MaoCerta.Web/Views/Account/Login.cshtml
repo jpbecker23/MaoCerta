@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Entrar";
+}
+<section class="page auth-page">
+    <div class="card form-card">
+        <h1>Acesse sua conta</h1>
+        <p class="muted">Use suas credenciais para gerenciar solicitações, avaliações e notificações.</p>
+        <form id="login-form" autocomplete="on">
+            <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
+            <label>
+                Email
+                <input type="email" name="email" required placeholder="nome@empresa.com" />
+            </label>
+            <label>
+                Senha
+                <input type="password" name="password" required placeholder="••••••••" />
+            </label>
+            <label class="inline">
+                <input type="checkbox" name="remember" checked /> Permanecer conectado
+            </label>
+            <button class="btn primary" type="submit">Entrar</button>
+        </form>
+        <p class="muted">Ainda não tem conta? <a asp-action="Register">Crie uma agora.</a></p>
+    </div>
+    <aside class="card tips">
+        <h2>Vantagens</h2>
+        <ul>
+            <li>Acompanhe solicitações e mensagens.</li>
+            <li>Salve profissionais favoritos e filtros.</li>
+            <li>Receba alertas de avaliações novas.</li>
+        </ul>
+    </aside>
+</section>
+

@@ -1,0 +1,67 @@
+@{
+    ViewData["Title"] = "Meu perfil";
+}
+<section class="page" id="profile-page">
+    <div class="card form-card">
+        <h1>Dados de contato</h1>
+        <p class="muted">Atualize apenas email e telefone.</p>
+
+        <form id="contact-form" class="stack" novalidate>
+            <div class="grid grid-2">
+                <label>
+                    Nome completo
+                    <input type="text" name="name" autocomplete="name" required />
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" autocomplete="email" required />
+                </label>
+            </div>
+            <div class="grid grid-2">
+                <label>
+                    Telefone
+                    <input type="tel" name="phone" autocomplete="tel" />
+                </label>
+            </div>
+            <div class="grid grid-2">
+                <span class="muted" id="contact-status"></span>
+                <div class="actions">
+                    <button class="btn ghost" type="reset">Limpar</button>
+                    <button class="btn primary" type="submit">Salvar contato</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="card form-card">
+        <h1>Alterar senha</h1>
+        <p class="muted">Informe a senha atual e defina uma senha nova forte.</p>
+        <form id="password-form" novalidate>
+            <label>
+                Senha atual
+                <input type="password" name="currentPassword" required />
+            </label>
+            <div class="grid grid-2">
+                <label>
+                    Nova senha
+                    <input type="password" name="newPassword" required />
+                </label>
+                <label>
+                    Confirmar nova senha
+                    <input type="password" name="confirmPassword" required />
+                </label>
+            </div>
+            <p class="muted">Use 8+ caracteres com maiuscula, minuscula, numero e simbolo.</p>
+            <div class="grid grid-2">
+                <span class="muted" id="password-status"></span>
+                <div class="actions">
+                    <button class="btn primary" type="submit">Atualizar senha</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/profile.js" asp-append-version="true"></script>
+}

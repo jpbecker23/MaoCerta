@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "Profissionais";
+}
+<section class="page professionals" id="professionals-page">
+    <aside class="filters">
+        <h2>Filtros avançados</h2>
+        <form id="professional-filter-form">
+            <label>
+                Busca livre
+                <input type="search" name="searchTerm" placeholder="Nome, serviço ou palavra-chave" />
+            </label>
+            <label>
+                Categoria
+                <select name="categoryId" id="filters-category">
+                    <option value="">Todas</option>
+                </select>
+            </label>
+            <label>
+                Nota mínima
+                <input type="range" min="0" max="5" step="0.5" value="0" name="minRating" id="filters-rating" />
+                <span class="muted" id="filters-rating-value">0</span>
+            </label>
+            <div class="grid grid-2">
+                <label>
+                    Ordenar por
+                    <select name="sortBy">
+                        <option value="rating">Melhor avaliação</option>
+                        <option value="name">Nome</option>
+                        <option value="created">Mais recentes</option>
+                    </select>
+                </label>
+                <label>
+                    Direção
+                    <select name="sortDirection">
+                        <option value="desc">Desc</option>
+                        <option value="asc">Asc</option>
+                    </select>
+                </label>
+            </div>
+            <fieldset>
+                <legend>Critérios de destaque</legend>
+                <label class="inline"><input type="checkbox" name="criteria" value="quality" /> Alta qualidade</label>
+                <label class="inline"><input type="checkbox" name="criteria" value="time" /> Cumpre prazos</label>
+                <label class="inline"><input type="checkbox" name="criteria" value="communication" /> Boa comunicação</label>
+                <label class="inline"><input type="checkbox" name="criteria" value="professionalism" /> Profissionalismo</label>
+            </fieldset>
+            <button class="btn primary" type="submit">Aplicar filtros</button>
+            <button class="btn ghost" type="button" id="reset-filters">Limpar</button>
+        </form>
+    </aside>
+    <section class="results">
+        <header class="section-header">
+            <div>
+                <h1>Profissionais verificados</h1>
+                <p class="muted">Avaliações em múltiplos critérios e histórico de solicitações.</p>
+            </div>
+            <div id="result-stats">
+                <span id="result-count">0 profissionais</span>
+                <span id="result-average">média 0.0</span>
+            </div>
+        </header>
+        <div class="grid grid-2" id="professional-results" data-empty-message="Nenhum profissional encontrado."></div>
+        <div class="pagination" id="professional-pagination" hidden>
+            <button class="btn ghost" type="button" data-action="prev">Anterior</button>
+            <span id="pagination-info">Página 1</span>
+            <button class="btn ghost" type="button" data-action="next">Próxima</button>
+        </div>
+    </section>
+</section>
+
+@section Scripts {
+    <script src="~/js/professionals.js" asp-append-version="true"></script>
+}
+

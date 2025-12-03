@@ -1,0 +1,96 @@
+@page
+@model MaoCerta.Pages.SolicitarServicoModel
+@{
+    ViewData["Title"] = "Solicitar Serviço - Mão Certa";
+}
+
+<link rel="stylesheet" href="~/css/login.css" />
+
+<div class="login-container">
+    <div class="left-panel">
+        <h1>Solicitar Serviço</h1>
+        <p>Preencha os detalhes do serviço que você precisa.</p>
+        <div class="professional-info-card">
+            <h3>@Model.Profissional?.Nome</h3>
+            <p>@Model.Profissional?.Categoria?.Nome</p>
+            <p>@Model.Profissional?.Descricao</p>
+            <div class="rating">
+                <span class="star">★</span>
+                <span>@Model.Profissional?.AvaliacaoMedia.ToString("F1")</span>
+                <span class="rating-count">(@Model.Profissional?.TotalAvaliacoes avaliações)</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <h2>Detalhes do Serviço</h2>
+        <p>Descreva o que você precisa e quando.</p>
+
+        <form method="post" asp-page="/SolicitarServico">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Input.ProfissionalId" />
+            <input type="hidden" asp-for="Input.ClienteId" />
+
+            <input asp-for="Input.Titulo" placeholder="Título do serviço" />
+            <span asp-validation-for="Input.Titulo" class="text-danger"></span>
+
+            <textarea asp-for="Input.Descricao" placeholder="Descrição detalhada do serviço..." rows="4"></textarea>
+            <span asp-validation-for="Input.Descricao" class="text-danger"></span>
+
+            <input asp-for="Input.EnderecoServico" placeholder="Endereço onde será realizado o serviço" />
+            <span asp-validation-for="Input.EnderecoServico" class="text-danger"></span>
+
+            <input asp-for="Input.DataAgendamento" type="datetime-local" />
+            <span asp-validation-for="Input.DataAgendamento" class="text-danger"></span>
+
+            <input asp-for="Input.ValorProposto" type="number" step="0.01" placeholder="Valor proposto (opcional)" />
+            <span asp-validation-for="Input.ValorProposto" class="text-danger"></span>
+
+            <textarea asp-for="Input.Observacoes" placeholder="Observações adicionais..." rows="3"></textarea>
+            <span asp-validation-for="Input.Observacoes" class="text-danger"></span>
+
+            <button type="submit" class="login-btn">Enviar Solicitação</button>
+        </form>
+
+        @if (Model.Mensagem != null)
+        {
+            <p style="color:red; margin-top:10px;">@Model.Mensagem</p>
+        }
+
+        @if (Model.Sucesso)
+        {
+            <p style="color:green; margin-top:10px;">Solicitação enviada com sucesso!</p>
+        }
+    </div>
+</div>
+
+<style>
+    .professional-info-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+
+    .rating {
+        margin-top: 10px;
+    }
+
+    .star {
+        color: #ffd700;
+    }
+
+    .rating-count {
+        color: #666;
+        font-size: 0.9em;
+    }
+
+    form input,
+    form textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+</style>

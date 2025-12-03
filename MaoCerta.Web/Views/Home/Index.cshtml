@@ -1,0 +1,64 @@
+@{
+    ViewData["Title"] = "Início";
+}
+<div class="page" id="home-page">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Serviços confiáveis, avaliações reais</h1>
+            <p>Descubra profissionais avaliados por múltiplos critérios, envie pedidos e acompanhe respostas em tempo real.</p>
+            <form id="home-search-form" class="search-form">
+                <input type="text" id="home-search-term" placeholder="O que você precisa hoje?" />
+                <select id="home-category-filter">
+                    <option value="">Todas as categorias</option>
+                </select>
+                <button class="btn primary" type="submit">Buscar agora</button>
+            </form>
+            <div class="hero-cta">
+                <a class="btn ghost" asp-controller="Account" asp-action="RegisterProfessional">Sou profissional</a>
+            </div>
+        </div>
+        <div class="hero-stats" id="home-hero-stats">
+            <article>
+                <strong id="total-professionals">0</strong>
+                <span>Profissionais ativos</span>
+            </article>
+            <article>
+                <strong id="total-requests">0</strong>
+                <span>Solicitações concluídas</span>
+            </article>
+            <article>
+                <strong id="avg-rating">0.0</strong>
+                <span>Média geral das avaliações</span>
+            </article>
+        </div>
+    </section>
+
+    <section class="card-section">
+        <div class="section-header">
+            <h2>Categorias em destaque</h2>
+            <button type="button" class="icon-button" id="refresh-categories">Atualizar</button>
+        </div>
+        <div class="grid" id="categories-grid" data-empty-message="Nenhuma categoria cadastrada"></div>
+    </section>
+
+    <section class="card-section">
+        <div class="section-header">
+            <h2>Recomendações personalizadas</h2>
+            <a class="link" asp-controller="Professionals" asp-action="Index">Ver todos</a>
+        </div>
+        <div class="grid grid-3" id="featured-professionals" data-empty-message="Ainda não temos profissionais recomendados."></div>
+    </section>
+
+    <section class="card-section">
+        <div class="section-header">
+            <h2>Últimas avaliações</h2>
+            <button type="button" class="icon-button" id="refresh-reviews">Recarregar</button>
+        </div>
+        <div class="timeline" id="recent-reviews" data-empty-message="Nenhuma avaliação registrada."></div>
+    </section>
+</div>
+
+@section Scripts {
+    <script src="~/js/home.js" asp-append-version="true"></script>
+}
+

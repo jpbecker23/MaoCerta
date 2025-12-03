@@ -1,0 +1,56 @@
+@page
+@model MaoCerta.Pages.RegisterModel
+@{
+    ViewData["Title"] = "Cadastro - Mão Certa";
+}
+
+<link rel="stylesheet" href="~/css/login.css" />
+
+<div class="login-container">
+    <div class="left-panel">
+        <h1>Bem-vindo ao Mão Certa</h1>
+        <p>Cadastre-se e comece a aproveitar nossos serviços com segurança e praticidade.</p>
+        <a asp-page="/Login"><button>Já tenho conta</button></a>
+    </div>
+
+    <div class="right-panel">
+        <h2>Cadastro de Cliente</h2>
+        <p>Preencha os dados abaixo para criar sua conta.</p>
+
+        <form method="post" asp-page="/Register">
+            @Html.AntiForgeryToken()
+            <input asp-for="Input.Nome" placeholder="Nome Completo" />
+            <span asp-validation-for="Input.Nome" class="text-danger"></span>
+            
+            <input asp-for="Input.Email" placeholder="E-mail" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+            
+            <input asp-for="Input.Telefone" placeholder="Telefone" />
+            <span asp-validation-for="Input.Telefone" class="text-danger"></span>
+            
+            <input asp-for="Input.Endereco" placeholder="Endereço (opcional)" />
+            <span asp-validation-for="Input.Endereco" class="text-danger"></span>
+            
+            <input asp-for="Input.Idade" type="number" placeholder="Idade (opcional)" />
+            <span asp-validation-for="Input.Idade" class="text-danger"></span>
+            
+            <input asp-for="Input.Password" type="password" placeholder="Senha" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+            
+            <input asp-for="Input.ConfirmPassword" type="password" placeholder="Confirmar Senha" />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            
+            <button type="submit" class="login-btn">Cadastrar</button>
+        </form>
+
+        @if (Model.Mensagem != null)
+        {
+            <p style="color:red; margin-top:10px;">@Model.Mensagem</p>
+        }
+
+        @if (Model.Sucesso)
+        {
+            <p style="color:green; margin-top:10px;">Cadastro realizado com sucesso!</p>
+        }
+    </div>
+</div>

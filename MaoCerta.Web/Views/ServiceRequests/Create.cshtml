@@ -1,0 +1,54 @@
+﻿@model ServiceRequestViewModel
+@{
+    ViewData["Title"] = "Solicitar serviço";
+}
+<section class="page service-request" id="service-request-page" data-professional-id="@Model.ProfessionalId" data-professional-name="@Model.ProfessionalName">
+    <div class="card form-card">
+        <h1>Nova solicitação</h1>
+        <p class="muted">Seu pedido será enviado para o profissional selecionado e ficará disponível no painel.</p>
+        <form id="service-request-form">
+            <input type="hidden" name="professionalId" value="@(Model.ProfessionalId?.ToString() ?? string.Empty)" />
+            <label>
+                Título da necessidade
+                <input type="text" name="title" required placeholder="Ex.: Reforma da cozinha" />
+            </label>
+            <label>
+                Descrição detalhada
+                <textarea name="description" rows="4" required></textarea>
+            </label>
+            <label>
+                Endereço do serviço
+                <input type="text" name="serviceAddress" placeholder="Rua, número, cidade" />
+            </label>
+            <div class="grid grid-2">
+                <label>
+                    Data sugerida
+                    <input type="date" name="scheduledDate" />
+                </label>
+                <label>
+                    Valor previsto (R$)
+                    <input type="number" step="0.01" name="proposedValue" />
+                </label>
+            </div>
+            <label>
+                Observações
+                <textarea name="observations" rows="3"></textarea>
+            </label>
+            <button class="btn primary" type="submit">Enviar solicitação</button>
+        </form>
+    </div>
+    <aside class="card tips">
+        <h2>Profissional selecionado</h2>
+        <p id="selected-professional">@(Model.ProfessionalName ?? "Escolha um profissional na lista")</p>
+        <div id="selected-client" class="muted" style="margin-top:0.5rem;"></div>
+        <ul>
+            <li>Você será notificado sobre respostas.</li>
+            <li>Finalize o serviço para liberar avaliações.</li>
+        </ul>
+    </aside>
+</section>
+
+@section Scripts {
+    <script src="~/js/serviceRequest.js" asp-append-version="true"></script>
+}
+

@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Moderação de avaliações";
+}
+<section class="page admin" id="admin-review-dashboard">
+    <header class="section-header">
+        <div>
+            <h1>Central de moderação</h1>
+            <p class="muted">Analise comentários, denuncie fraudes e mantenha a comunidade segura.</p>
+        </div>
+        <div class="filters-inline">
+            <label>
+                Status
+                <select id="admin-filter-status">
+                    <option value="all">Todos</option>
+                    <option value="active">Ativos</option>
+                    <option value="inactive">Arquivados</option>
+                </select>
+            </label>
+            <label>
+                Nota mínima
+                <select id="admin-filter-rating">
+                    <option value="0">Todas</option>
+                    <option value="2">2+</option>
+                    <option value="4">4+</option>
+                </select>
+            </label>
+        </div>
+    </header>
+    <div class="card" id="admin-review-list" data-empty-message="Nenhuma avaliação para revisar."></div>
+</section>
+
+@section Scripts {
+    <script src="~/js/reviewForm.js" asp-append-version="true"></script>
+}
+

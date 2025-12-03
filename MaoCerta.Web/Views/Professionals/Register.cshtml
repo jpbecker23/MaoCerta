@@ -1,0 +1,61 @@
+@{
+    ViewData["Title"] = "Cadastro profissional";
+}
+<section class="page" id="professional-register-page">
+    <div class="card form-card">
+        <h1>Complete seu perfil profissional</h1>
+        <p class="muted">Use seu cadastro existente para publicar seus serviços na plataforma.</p>
+        <form id="professional-register-form">
+            <div class="grid grid-2">
+                <label>
+                    Nome completo
+                    <input type="text" name="name" autocomplete="name" required />
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" autocomplete="email" required />
+                </label>
+            </div>
+            <div class="grid grid-2">
+                <label>
+                    Telefone
+                    <input type="tel" name="phone" placeholder="(11) 99999-9999" required />
+                </label>
+                <label>
+                    Categoria
+                    <select name="categoryId" id="professional-category" required>
+                        <option value="">Selecione uma categoria</option>
+                    </select>
+                </label>
+            </div>
+            <label>
+                Endereço
+                <input type="text" name="address" autocomplete="street-address" required />
+            </label>
+            <label>
+                Especialidades e descrição dos serviços
+                <textarea name="description" rows="3" placeholder="Fale sobre áreas de atuação, experiência e diferenciais" required></textarea>
+            </label>
+            <div class="grid grid-2">
+                <label class="inline">
+                    <input type="checkbox" name="acceptTerms" required />
+                    Confirmo que as informações são verdadeiras e atualizadas.
+                </label>
+                <span class="muted" id="professional-register-status"></span>
+            </div>
+            <button class="btn primary" type="submit">Salvar cadastro profissional</button>
+        </form>
+    </div>
+    <aside class="card tips">
+        <h2>Dicas rápidas</h2>
+        <ul>
+            <li>Mantenha o email igual ao usado para login.</li>
+            <li>Descreva especialidades com detalhes e palavras-chave.</li>
+            <li>Informe um telefone válido para contato rápido.</li>
+        </ul>
+    </aside>
+</section>
+
+@section Scripts {
+    <script src="~/js/professional-register.js" asp-append-version="true"></script>
+}

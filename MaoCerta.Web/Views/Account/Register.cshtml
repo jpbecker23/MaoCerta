@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Criar conta";
+}
+<section class="page auth-page auth-page--full">
+    <div class="card form-card">
+        <h1>Como quer usar a Mao Certa?</h1>
+        <p class="muted">Escolha o tipo de cadastro para seguir com os campos certos.</p>
+        <div class="grid grid-2">
+            <article class="card">
+                <h2>Sou cliente</h2>
+                <p class="muted">Quero solicitar servicos, acompanhar status e avaliar profissionais.</p>
+                <ul class="muted">
+                    <li>Cadastro com CPF e contato</li>
+                    <li>Acompanha e compartilha codigo de confirmacao</li>
+                    <li>Historico de solicitacoes</li>
+                </ul>
+                <a class="btn primary" asp-action="RegisterClient">Cadastrar cliente</a>
+            </article>
+            <article class="card">
+                <h2>Sou profissional</h2>
+                <p class="muted">Quero receber pedidos, validar codigos e concluir servicos.</p>
+                <ul class="muted">
+                    <li>Endereco, CEP e contatos obrigatorios</li>
+                    <li>Especializacao/area de atuacao</li>
+                    <li>Fluxo com codigo de confirmacao</li>
+                </ul>
+                <a class="btn ghost" asp-action="RegisterProfessional">Cadastrar profissional</a>
+            </article>
+        </div>
+        <p class="muted">Ja possui conta? <a asp-action="Login">Acesse aqui.</a></p>
+    </div>
+</section>

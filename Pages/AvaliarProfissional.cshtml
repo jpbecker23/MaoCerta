@@ -1,0 +1,174 @@
+@page
+@model MaoCerta.Pages.AvaliarProfissionalModel
+@{
+    ViewData["Title"] = "Avaliar Profissional - Mão Certa";
+}
+
+<link rel="stylesheet" href="~/css/login.css" />
+
+<div class="login-container">
+    <div class="left-panel">
+        <h1>Avaliação Detalhada</h1>
+        <p>Avalie o profissional com base em diferentes critérios para ajudar outros clientes.</p>
+        <div class="professional-info-card">
+            <h3>@Model.Profissional?.Nome</h3>
+            <p>@Model.Profissional?.Categoria?.Nome</p>
+            <p>@Model.Profissional?.Descricao</p>
+        </div>
+    </div>
+
+    <div class="right-panel">
+        <h2>Avaliar Serviço</h2>
+        <p>Preencha a avaliação detalhada do serviço prestado.</p>
+
+        <form method="post" asp-page="/AvaliarProfissional">
+            @Html.AntiForgeryToken()
+            <input type="hidden" asp-for="Input.ProfissionalId" />
+            <input type="hidden" asp-for="Input.ClienteId" />
+            <input type="hidden" asp-for="Input.SolicitacaoServicoId" />
+
+            <div class="evaluation-section">
+                <h3>Critérios de Avaliação (1-5 estrelas)</h3>
+                
+                <div class="rating-item">
+                    <label>💰 Preço:</label>
+                    <div class="star-rating">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <input type="radio" asp-for="Input.NotaPreco" value="@i" id="preco_@i" />
+                            <label for="preco_@i">★</label>
+                        }
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <label>✨ Qualidade do Serviço:</label>
+                    <div class="star-rating">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <input type="radio" asp-for="Input.NotaQualidade" value="@i" id="qualidade_@i" />
+                            <label for="qualidade_@i">★</label>
+                        }
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <label>⚡ Tempo de Execução:</label>
+                    <div class="star-rating">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <input type="radio" asp-for="Input.NotaTempoExecucao" value="@i" id="tempo_@i" />
+                            <label for="tempo_@i">★</label>
+                        }
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <label>💬 Comunicação:</label>
+                    <div class="star-rating">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <input type="radio" asp-for="Input.NotaComunicacao" value="@i" id="comunicacao_@i" />
+                            <label for="comunicacao_@i">★</label>
+                        }
+                    </div>
+                </div>
+
+                <div class="rating-item">
+                    <label>👔 Profissionalismo:</label>
+                    <div class="star-rating">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <input type="radio" asp-for="Input.NotaProfissionalismo" value="@i" id="profissionalismo_@i" />
+                            <label for="profissionalismo_@i">★</label>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="comment-section">
+                <h3>Comentários</h3>
+                
+                <textarea asp-for="Input.Comentario" placeholder="Comentário geral sobre o serviço..." rows="4"></textarea>
+                <span asp-validation-for="Input.Comentario" class="text-danger"></span>
+
+                <input asp-for="Input.PontosPositivos" placeholder="Pontos positivos do serviço..." />
+                <span asp-validation-for="Input.PontosPositivos" class="text-danger"></span>
+
+                <input asp-for="Input.PontosNegativos" placeholder="Pontos que poderiam melhorar..." />
+                <span asp-validation-for="Input.PontosNegativos" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="login-btn">Enviar Avaliação</button>
+        </form>
+
+        @if (Model.Mensagem != null)
+        {
+            <p style="color:red; margin-top:10px;">@Model.Mensagem</p>
+        }
+
+        @if (Model.Sucesso)
+        {
+            <p style="color:green; margin-top:10px;">Avaliação enviada com sucesso!</p>
+        }
+    </div>
+</div>
+
+<style>
+    .evaluation-section {
+        margin-bottom: 20px;
+    }
+
+    .rating-item {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .rating-item label {
+        min-width: 150px;
+        font-weight: bold;
+    }
+
+    .star-rating {
+        display: flex;
+        gap: 5px;
+    }
+
+    .star-rating input[type="radio"] {
+        display: none;
+    }
+
+    .star-rating label {
+        font-size: 24px;
+        color: #ddd;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+
+    .star-rating input[type="radio"]:checked ~ label,
+    .star-rating label:hover {
+        color: #ffd700;
+    }
+
+    .comment-section {
+        margin-top: 20px;
+    }
+
+    .comment-section textarea,
+    .comment-section input {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .professional-info-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+</style>

@@ -1,0 +1,203 @@
+@page
+@model MaoCerta.Pages.HomeModel
+@{
+    ViewData["Title"] = "Mão Certa - Plataforma de Serviços";
+}
+
+<link rel="stylesheet" href="~/css/home.css" />
+
+<!-- Top Navigation -->
+<nav class="top-nav">
+    <div class="top-nav-content">
+        <div class="logo">
+            <span class="logo-icon">🤝</span>
+            <span>Mão Certa</span>
+        </div>
+        <div class="nav-menu">
+            <a href="#" class="nav-link active" onclick="showScreen('home')">
+                <span>🏠</span> Início
+            </a>
+            <a asp-page="/Profissionais" class="nav-link">
+                <span>🔍</span> Buscar Profissionais
+            </a>
+            <a asp-page="/Profissionais" class="nav-link">
+                <span>👤</span> Profissionais
+            </a>
+            <a href="#" class="nav-link">
+                <span>💼</span> Para Profissionais
+            </a>
+        </div>
+        <div class="nav-actions">
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <span>Olá, @User.Identity.Name!</span>
+                <form method="post" asp-page="/Logout" style="display: inline;">
+                    <button type="submit" class="btn-login">Sair</button>
+                </form>
+            }
+            else
+            {
+                <a asp-page="/Login"><button class="btn-login">Entrar</button></a>
+                <a asp-page="/Register"><button class="btn-register">Cadastrar Cliente</button></a>
+                <a asp-page="/CadastroProfissional"><button class="btn-register">Cadastrar Profissional</button></a>
+            }
+        </div>
+    </div>
+</nav>
+
+<!-- Main Container -->
+<div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-card">
+            <h3 class="sidebar-title">Navegação</h3>
+            <ul class="sidebar-menu">
+                <li class="sidebar-item active" onclick="showScreen('home')">
+                    <span>🏠</span> Página Inicial
+                </li>
+                <li class="sidebar-item" onclick="showScreen('search')">
+                    <span>🔍</span> Buscar Profissionais
+                </li>
+                <li class="sidebar-item" onclick="showScreen('profile')">
+                    <span>⭐</span> Melhores Avaliados
+                </li>
+                <li class="sidebar-item">
+                    <span>📅</span> Meus Agendamentos
+                </li>
+                <li class="sidebar-item">
+                    <span>💬</span> Mensagens
+                </li>
+            </ul>
+        </div>
+
+        <div class="sidebar-card">
+            <h3 class="sidebar-title">Categorias</h3>
+            <div class="category-list">
+                <div class="category-item">🔧 Encanamento</div>
+                <div class="category-item">⚡ Elétrica</div>
+                <div class="category-item">🌱 Jardinagem</div>
+                <div class="category-item">🧹 Limpeza</div>
+                <div class="category-item">🎨 Pintura</div>
+                <div class="category-item">🪚 Marcenaria</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <div id="home" class="screen active">
+            <div class="hero">
+                <h1>Encontre o profissional certo para você</h1>
+                <p>Milhares de profissionais qualificados prontos para atender suas necessidades</p>
+                <div class="search-bar-large">
+                    <input type="text" class="search-input-large"
+                        placeholder="Qual serviço você precisa? Ex: Encanador, Eletricista...">
+                    <button class="btn-search-large">Buscar Agora</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2 class="card-title">Categorias Populares</h2>
+                <div class="category-grid">
+                    <button class="category-btn">🔧 Encanamento</button>
+                    <button class="category-btn">⚡ Elétrica</button>
+                    <button class="category-btn">🌱 Jardinagem</button>
+                    <button class="category-btn">🧹 Limpeza</button>
+                    <button class="category-btn">🎨 Pintura</button>
+                    <button class="category-btn">🪚 Marcenaria</button>
+                </div>
+            </div>
+
+            <div class="cards-grid">
+                <div class="card">
+                    <h3 class="card-title">🎯 Busca Inteligente</h3>
+                    <p class="card-text">Filtros avançados por proximidade, preço, rapidez e qualidade. Encontre
+                        exatamente o que precisa.</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">📊 Avaliação Completa</h3>
+                    <p class="card-text">Sistema único com múltiplos critérios: qualidade, preço, tempo, comunicação e
+                        profissionalismo.</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">💬 Conexão Direta</h3>
+                    <p class="card-text">Converse diretamente com o profissional. Negocie valores e horários sem
+                        intermediários.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Profissionais em Destaque</h2>
+            <div class="professional-list">
+                <div class="professional-card">
+                    <div class="avatar"></div>
+                    <div class="professional-info">
+                        <div class="professional-name">João Silva</div>
+                        <div class="professional-specialty">Encanador Profissional</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span>4.9</span>
+                            <span class="rating-count">(127 avaliações)</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag tag-green">⚡ Atendimento Rápido</span>
+                            <span class="tag tag-purple">✨ Alta Qualidade</span>
+                        </div>
+                    </div>
+                    <div class="professional-actions">
+                        <div class="distance">📍 2.3 km de você</div>
+                        <button class="btn-contact">Ver Perfil</button>
+                    </div>
+                </div>
+
+                <div class="professional-card">
+                    <div class="avatar"></div>
+                    <div class="professional-info">
+                        <div class="professional-name">Maria Santos</div>
+                        <div class="professional-specialty">Jardineira Especializada</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span>4.8</span>
+                            <span class="rating-count">(89 avaliações)</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag tag-blue">💰 Preço Justo</span>
+                            <span class="tag tag-green">⚡ Atendimento Rápido</span>
+                        </div>
+                    </div>
+                    <div class="professional-actions">
+                        <div class="distance">📍 1.8 km de você</div>
+                        <button class="btn-contact">Ver Perfil</button>
+                    </div>
+                </div>
+
+                <div class="professional-card">
+                    <div class="avatar"></div>
+                    <div class="professional-info">
+                        <div class="professional-name">Carlos Oliveira</div>
+                        <div class="professional-specialty">Eletricista Certificado</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span>5.0</span>
+                            <span class="rating-count">(156 avaliações)</span>
+                        </div>
+                        <div class="tags">
+                            <span class="tag tag-purple">✨ Alta Qualidade</span>
+                            <span class="tag tag-blue">💬 Boa Comunicação</span>
+                        </div>
+                    </div>
+                    <div class="professional-actions">
+                        <div class="distance">📍 3.5 km de você</div>
+                        <button class="btn-contact">Ver Perfil</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<script>
+    function showScreen(id) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+    }
+</script>

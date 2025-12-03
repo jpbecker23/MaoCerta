@@ -1,0 +1,55 @@
+﻿@model ReviewFormViewModel
+@{
+    ViewData["Title"] = "Avaliar";
+}
+<section class="page review-page" id="review-page" data-professional-id="@Model.ProfessionalId" data-service-request-id="@Model.ServiceRequestId">
+    <div class="card form-card">
+        <h1>Avalie o serviço prestado</h1>
+        <p class="muted">Avaliações multi-critérios ajudam outros clientes e fortalecem nossa proteção contra fraudes.</p>
+        <form id="review-form">
+            <div class="grid grid-2">
+                <label>
+                    Profissional (ID)
+                    <input type="number" name="professionalId" value="@(Model.ProfessionalId?.ToString() ?? string.Empty)" required />
+                </label>
+                <label>
+                    Solicitação (ID)
+                    <input type="number" name="serviceRequestId" value="@(Model.ServiceRequestId?.ToString() ?? string.Empty)" required />
+                </label>
+            </div>
+            <div class="criteria-form">
+                <label>Preço justo <input type="range" min="1" max="5" step="1" name="priceRating" value="5" /><span class="criteria-value">5</span></label>
+                <label>Qualidade <input type="range" min="1" max="5" step="1" name="qualityRating" value="5" /><span class="criteria-value">5</span></label>
+                <label>Pontualidade <input type="range" min="1" max="5" step="1" name="speedRating" value="5" /><span class="criteria-value">5</span></label>
+                <label>Comunicação <input type="range" min="1" max="5" step="1" name="communicationRating" value="5" /><span class="criteria-value">5</span></label>
+                <label>Profissionalismo <input type="range" min="1" max="5" step="1" name="professionalismRating" value="5" /><span class="criteria-value">5</span></label>
+            </div>
+            <label>
+                Comentário geral
+                <textarea name="comment" rows="4" placeholder="Conte como foi a experiência"></textarea>
+            </label>
+            <label>
+                Pontos positivos
+                <textarea name="positivePoints" rows="2"></textarea>
+            </label>
+            <label>
+                Pontos de melhoria
+                <textarea name="negativePoints" rows="2"></textarea>
+            </label>
+            <button class="btn primary" type="submit">Enviar avaliação</button>
+        </form>
+    </div>
+    <aside class="card tips">
+        <h2>Dicas rápidas</h2>
+        <ul>
+            <li>Use critérios consistentes para permitir filtros avançados.</li>
+            <li>Comentários detalhados ajudam o algoritmo de recomendação.</li>
+            <li>Fraudes são monitoradas automaticamente pela plataforma.</li>
+        </ul>
+    </aside>
+</section>
+
+@section Scripts {
+    <script src="~/js/reviewForm.js" asp-append-version="true"></script>
+}
+

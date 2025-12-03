@@ -1,0 +1,84 @@
+@page
+@model MaoCerta.Pages.ProfissionaisModel
+@{
+    ViewData["Title"] = "Profissionais - Mão Certa";
+}
+
+<link rel="stylesheet" href="~/css/home.css" />
+
+<div class="main-container">
+    <div class="content">
+        <div class="search-section">
+            <h1>Encontre o Profissional Ideal</h1>
+            <div class="search-bar-large">
+                <input type="text" class="search-input-large" placeholder="Buscar por nome ou especialidade..." />
+                <select class="category-select">
+                    <option value="">Todas as categorias</option>
+                    @foreach (var categoria in Model.Categorias)
+                    {
+                        <option value="@categoria.Id">@categoria.Nome</option>
+                    }
+                </select>
+                <button class="btn-search-large">Buscar</button>
+            </div>
+        </div>
+
+        <div class="filters-section">
+            <h3>Filtros</h3>
+            <div class="filter-group">
+                <label>Avaliação Mínima:</label>
+                <select id="ratingFilter">
+                    <option value="">Qualquer</option>
+                    <option value="4">4+ estrelas</option>
+                    <option value="3">3+ estrelas</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Critério:</label>
+                <select id="criteriaFilter">
+                    <option value="">Qualquer</option>
+                    <option value="preco">Melhor Preço</option>
+                    <option value="qualidade">Melhor Qualidade</option>
+                    <option value="tempo">Mais Rápido</option>
+                    <option value="comunicacao">Melhor Comunicação</option>
+                    <option value="profissionalismo">Mais Profissional</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="professionals-grid">
+            @foreach (var profissional in Model.Profissionais)
+            {
+                <div class="professional-card">
+                    <div class="avatar">@profissional.Nome.Substring(0, 1).ToUpper()</div>
+                    <div class="professional-info">
+                        <div class="professional-name">@profissional.Nome</div>
+                        <div class="professional-specialty">@profissional.Categoria.Nome</div>
+                        <div class="rating">
+                            <span class="star">★</span>
+                            <span>@profissional.AvaliacaoMedia.ToString("F1")</span>
+                            <span class="rating-count">(@profissional.TotalAvaliacoes avaliações)</span>
+                        </div>
+                        <div class="professional-description">@profissional.Descricao</div>
+                        <div class="contact-info">
+                            <span>📧 @profissional.Email</span>
+                            <span>📞 @profissional.Telefone</span>
+                        </div>
+                    </div>
+                    <div class="professional-actions">
+                        <a asp-page="/AvaliarProfissional" asp-route-id="@profissional.Id" class="btn-contact">Avaliar</a>
+                        <a asp-page="/SolicitarServico" asp-route-id="@profissional.Id" class="btn-contact">Solicitar Serviço</a>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (!Model.Profissionais.Any())
+        {
+            <div class="no-results">
+                <h3>Nenhum profissional encontrado</h3>
+                <p>Tente ajustar os filtros de busca.</p>
+            </div>
+        }
+    </div>
+</div>

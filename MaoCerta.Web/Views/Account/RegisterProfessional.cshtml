@@ -1,0 +1,104 @@
+@{
+    ViewData["Title"] = "Cadastro de profissional";
+}
+<section class="page auth-page" id="professional-signup-page">
+    <div class="card form-card">
+        <h1>Criar conta de profissional</h1>
+        <p class="muted">Preencha os dados para receber solicitacoes e validar codigos de conclusao.</p>
+        <form id="professional-signup-form" novalidate>
+            <div class="grid grid-2">
+                <label>
+                    Nome completo
+                    <input type="text" name="fullName" autocomplete="name" required />
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" autocomplete="email" required />
+                </label>
+            </div>
+            <div class="grid grid-3">
+                <label>
+                    CPF
+                    <input type="text" name="cpf" placeholder="000.000.000-00" inputmode="numeric" required />
+                </label>
+                <label>
+                    Celular
+                    <input type="tel" name="phone" placeholder="(11) 99999-9999" required />
+                </label>
+                <label>
+                    Categoria
+                    <select name="categoryId" id="signup-category" required>
+                        <option value="">Selecione</option>
+                    </select>
+                </label>
+            </div>
+            <div class="grid grid-3">
+                <label>
+                    CEP
+                    <input type="text" name="postalCode" placeholder="00000-000" inputmode="numeric" required />
+                </label>
+                <label>
+                    Estado
+                    <input type="text" name="state" maxlength="2" placeholder="UF" required />
+                </label>
+                <label>
+                    Cidade
+                    <input type="text" name="city" required />
+                </label>
+            </div>
+            <div class="grid grid-3">
+                <label>
+                    Bairro
+                    <input type="text" name="neighborhood" required />
+                </label>
+                <label>
+                    Rua
+                    <input type="text" name="street" required />
+                </label>
+                <label>
+                    Numero
+                    <input type="text" name="number" required />
+                </label>
+            </div>
+            <label>
+                Complemento (opcional)
+                <input type="text" name="complement" />
+            </label>
+            <label>
+                Especializacao / area de atuacao
+                <textarea name="specialization" rows="2" required></textarea>
+            </label>
+            <div class="grid grid-2">
+                <label>
+                    Senha
+                    <input type="password" name="password" required />
+                </label>
+                <label>
+                    Confirmar senha
+                    <input type="password" name="confirmPassword" required />
+                </label>
+            </div>
+            <p class="muted" id="professional-password-hint">Use pelo menos 8 caracteres, letra maiuscula, minuscula, numero e simbolo.</p>
+            <div class="grid grid-2">
+                <label class="inline">
+                    <input type="checkbox" name="terms" required />
+                    Li e aceito os termos para prestadores.
+                </label>
+                <span class="muted" id="professional-register-status"></span>
+            </div>
+            <button class="btn primary" type="submit">Criar conta profissional</button>
+        </form>
+    </div>
+    <aside class="card tips">
+        <h2>Preenchimento rapido</h2>
+        <ul>
+            <li>Busque o CEP para preencher rua e bairro.</li>
+            <li>Informe o CPF e telefone validos.</li>
+            <li>Descricoes claras atraem mais solicitacoes.</li>
+        </ul>
+    </aside>
+</section>
+
+@section Scripts {
+    <script src="~/js/register-professional.js" asp-append-version="true"></script>
+}

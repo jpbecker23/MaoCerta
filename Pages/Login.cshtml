@@ -1,0 +1,45 @@
+@page
+@model MaoCerta.Pages.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mão Certa - Login</title>
+    <link rel="stylesheet" href="~/css/login.css" />
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="left-panel">
+            <h1>Mão Certa</h1>
+            <p>O aplicativo certo para o que você precisa!</p>
+            <button>Saiba Mais</button>
+        </div>
+
+        <div class="right-panel">
+            <h2>Olá de Novo!</h2>
+            <p>Bem Vindo de volta</p>
+            <form method="post">
+                <input asp-for="Input.Email" type="email" placeholder="Email Address" required />
+                <input asp-for="Input.Password" type="password" placeholder="Password" required />
+                <div class="remember-me">
+                    <input asp-for="Input.RememberMe" type="checkbox" />
+                    <label asp-for="Input.RememberMe">Lembrar-me</label>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            <div class="forgot">
+                <a href="#">Esqueceu a senha?</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

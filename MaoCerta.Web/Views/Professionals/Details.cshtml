@@ -1,0 +1,85 @@
+﻿@model ProfessionalDetailViewModel
+@{
+    ViewData["Title"] = "Profissional";
+}
+<section class="page professional-detail" id="professional-detail" data-professional-id="@Model.ProfessionalId">
+    <header class="detail-header">
+        <div>
+            <p class="muted">ID #@Model.ProfessionalId</p>
+            <h1 id="professional-name">Profissional</h1>
+            <p id="professional-description" class="muted"></p>
+            <div class="badges">
+                <span class="badge" id="professional-category"></span>
+                <span class="badge" id="professional-status">Ativo</span>
+            </div>
+        </div>
+        <div class="actions">
+            <a class="btn primary" id="request-service" data-base-url="@Url.Action("Create", "ServiceRequests")">Solicitar serviço</a>
+        </div>
+    </header>
+
+    <section class="detail-metrics">
+        <div>
+            <strong id="professional-rating">0.0</strong>
+            <span>Média geral</span>
+        </div>
+        <div>
+            <strong id="professional-total-reviews">0</strong>
+            <span>Avaliações</span>
+        </div>
+        <div>
+            <strong id="professional-services-done">0</strong>
+            <span>Serviços finalizados</span>
+        </div>
+        <div>
+            <strong id="professional-services-pending">0</strong>
+            <span>Solicitações em andamento</span>
+        </div>
+    </section>
+
+    <section class="card criteria" id="criteria-matrix">
+        <h2>Médias por critério</h2>
+        <div class="criteria-grid">
+            <article data-criteria="quality"><span>Qualidade</span><strong>0.0</strong></article>
+            <article data-criteria="time"><span>Pontualidade</span><strong>0.0</strong></article>
+            <article data-criteria="communication"><span>Comunicação</span><strong>0.0</strong></article>
+            <article data-criteria="professionalism"><span>Profissionalismo</span><strong>0.0</strong></article>
+        </div>
+    </section>
+
+    <section class="card" id="reviews-section">
+        <header class="section-header">
+            <div>
+                <h2>Avaliações recentes</h2>
+                <p class="muted">Com pontos positivos, negativos e comentário completo.</p>
+            </div>
+            <div class="filters-inline">
+                <label>
+                    Nota mínima
+                    <select id="review-filter-rating">
+                        <option value="0">Todas</option>
+                        <option value="3">3+</option>
+                        <option value="4">4+</option>
+                        <option value="4.5">4.5+</option>
+                    </select>
+                </label>
+                <label>
+                    Critério destaque
+                    <select id="review-filter-criteria">
+                        <option value="">Todos</option>
+                        <option value="quality">Qualidade</option>
+                        <option value="time">Pontualidade</option>
+                        <option value="communication">Comunicação</option>
+                        <option value="professionalism">Profissionalismo</option>
+                    </select>
+                </label>
+            </div>
+        </header>
+        <div class="reviews" id="professional-reviews" data-empty-message="Seja o primeiro a avaliar."></div>
+    </section>
+</section>
+
+@section Scripts {
+    <script src="~/js/professionalDetail.js" asp-append-version="true"></script>
+}
+

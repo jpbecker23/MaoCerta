@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Solicitações recebidas";
+}
+<section class="page" id="inbox-page">
+    <header class="section-header">
+        <div>
+            <h1>Solicitações recebidas</h1>
+            <p class="muted">Gerencie pedidos enviados por clientes, atualize o status e compartilhe o código de verificação.</p>
+        </div>
+        <span class="badge" id="inbox-summary" aria-live="polite"></span>
+    </header>
+
+    <div class="card">
+        <div class="section-header" style="margin-bottom:1rem;">
+            <div>
+                <h3>Painel do profissional</h3>
+                <p class="muted">Disponível apenas para contas vinculadas a um perfil de profissional.</p>
+            </div>
+            <small class="muted" id="inbox-professional-name"></small>
+        </div>
+        <p class="muted" id="inbox-message"></p>
+        <div class="grid" id="inbox-list" data-empty-message="Nenhuma solicitação recebida ainda."></div>
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/inbox.js" asp-append-version="true"></script>
+}
